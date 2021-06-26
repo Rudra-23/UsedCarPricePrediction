@@ -37,128 +37,29 @@ def index(requests):
 
         Location =requests.POST['Location']
         
-
+        Locations = [0]*10
         if Location =='Bangalore':
-            Location_Bangalore =1
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0
+            Locations[0] =1
         elif Location =='Chennai':
-            Location_Bangalore =0
-            Location_Chennai =1
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0
+            Locations[1] =1
         elif Location =='Coimbatore':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=1
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0    
+            Locations[2] =1    
         elif Location =='Delhi':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=1
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0   
+            Locations[3] =1   
         elif Location =='Hyderabad':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=1
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0
+            Locations[4] = 1
         elif Location =='Jaipur':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=1
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0
+            Locations[5] = 1
         elif Location =='Kochi':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=1
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0
+            Locations[6] = 1
         elif Location =='Kolkata':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=1
-            Location_Mumbai=0
-            Location_Pune=0
+            Locations[7] = 1
         elif Location =='Mumbai':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=1
-            Location_Pune=0
+            Locations[8] = 1
         elif Location =='Pune':
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=1 
+            Locations[9] = 1
         else:
-            Location_Bangalore =0
-            Location_Chennai =0
-            Location_Coimbatore=0
-            Location_Delhi=0
-            Location_Hyderabad=0
-            Location_Jaipur=0
-            Location_Kochi=0
-            Location_Kolkata=0
-            Location_Mumbai=0
-            Location_Pune=0
+            Locations[0] = 0
 
         fuel_type =requests.POST['fuel_type']
         if fuel_type =='Petrol':
@@ -178,8 +79,12 @@ def index(requests):
             Fuel_Type_LPG =0
             Fuel_Type_Petrol =0
 
+        final_arr = []
+        final_arr += [year,Kilometers_Driven,transmission,owner,Seats,Mileage,Power,Engine]
+        final_arr += Locations
+        final_arr += [Fuel_Type_Diesel, Fuel_Type_LPG, Fuel_Type_Petrol]
 
-        ans =model.predict([[year,Kilometers_Driven,transmission,owner,Seats,Mileage,Power,Engine,Location_Bangalore,Location_Chennai,Location_Coimbatore,Location_Delhi,Location_Hyderabad,Location_Jaipur,Location_Kochi,Location_Kolkata,Location_Mumbai,Location_Pune,Fuel_Type_Diesel,Fuel_Type_LPG,Fuel_Type_Petrol]])
+        ans =model.predict([final_arr])
         context ={
             'ans':round(float(ans),2),
             'flag':True
