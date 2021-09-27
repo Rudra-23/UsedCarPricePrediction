@@ -7,35 +7,44 @@
     <title>Car Price Prediction</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     <style>
         .main{
-            background-color:white;
+            background-color:#FAFAFA;
             border-radius: 10px;
             font-size: large;
             font-weight: bolder;
             padding-top: 10px;
+            border: 2px solid black;
         }
 
         body{
-            background-color: lightskyblue;
+            background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%,#EB7965 100%);
+            font-family: 'Nunito', sans-serif;
         }
         .answer{
             font-weight: bolder;
             font-size: large;
+            border: 1px solid black;
+        }
+        .form-control {
+            border: 1px solid black;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center my-3">Second hand Car Price Predictor</h1>
+        <h1 class="text-center my-3" style="font-weight: 800;" >Second hand Car Price Predictor</h1>
     </div>
     
 
     {% if flag %}
     
     <div class="alert alert-primary text-center answer" role="alert">
-        The Predicted Price is around {{ans}} lacs
+        The Predicted Price is around {{ans}} lakhs INR (1 Lakh = 100,000).
       </div>
     {% endif %}
     
@@ -44,11 +53,11 @@
             {% csrf_token %}
             <div class="form-group col-xl-6">
                 <label for="year">Year of  Manufacturing</label>
-                <input type="number" class="form-control" id="year" name="year" placeholder="eg. 2020" required>
+                <input type="number" class="form-control" id="year" name="year" min="2000" placeholder="eg. 2020" required>
             </div>
             <div class="form-group col-xl-6">
                 <label for="Kilometers_Driven">Kilometers Driven</label>
-                <input type="number" class="form-control" id="Kilometers_Driven" name="Kilometers_Driven"
+                <input type="number" class="form-control" id="Kilometers_Driven" name="Kilometers_Driven" min="0"
                     placeholder="eg. 20000 (in Kms)" required>
             </div>
             <div class="form-group col-xl-6">
@@ -69,20 +78,20 @@
             </div>
             <div class="form-group col-xl-6">
                 <label for="Seats">Seats</label>
-                <input required type="number" class="form-control" id="Seats" name="Seats" placeholder="eg. 4 or 5">
+                <input required type="number" class="form-control" id="Seats" name="Seats" placeholder="eg. 4 or 5" min="1">
             </div>
             <div class="form-group col-xl-6">
                 <label for="Mileage">Mileage</label>
-                <input required type="number" step='any' class="form-control" id="Mileage" name="Mileage" placeholder="eg. 13.434 (in kmpl or km/kg)">
+                <input required type="number" step='any' class="form-control" id="Mileage" name="Mileage" min="0" placeholder="eg. 13.434 (in kmpl or km/kg)">
             </div>
 
             <div class="form-group col-xl-6">
                 <label for="Power">Power</label>
-                <input required type="number" class="form-control" step="any" id="Power" name="Power" placeholder="eg. 115.442 (in bhp)">
+                <input required type="number" class="form-control" step="any" id="Power" name="Power" min="0" placeholder="eg. 115.442 (in bhp)">
             </div>
             <div class="form-group col-xl-6">
                 <label for="Engine">Engine</label>
-                <input required type="number" class="form-control" step="any" id="Engine" name="Engine" placeholder="eg. 1232 (in CC)">
+                <input required type="number" class="form-control" step="any" id="Engine" name="Engine" min="0" placeholder="eg. 1232 (in CC)">
             </div>  
             <div class="form-group col-xl-6">
                 <label for="Location"> Location</label>
@@ -110,7 +119,7 @@
                 </select>
             </div>
             <div class="form-group col-xl-6">
-            <button class="btn btn-success align-center" type="submit">submit</button>
+            <button class="btn btn-success align-center" style="border: 1px solid black;" type="submit">submit</button>
             <div>
         </form>
     </div>
