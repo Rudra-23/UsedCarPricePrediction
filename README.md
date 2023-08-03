@@ -1,6 +1,6 @@
 # UsedCarPricePrediction
 
-website link :<a href="https://get-car-price.onrender.com/">UsedCarPricePrediction </a> <br>
+website link: <a href="https://get-car-price.onrender.com/">UsedCarPricePrediction </a> <br>
 Notebook Link: <a href="https://www.kaggle.com/code/rudragujarathi/car-price-predictor-notebook/notebook"> kaggle </a>
 
 Technologies used:
